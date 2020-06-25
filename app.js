@@ -1,5 +1,5 @@
-const morgan = require('morgan');
-const express = require('express');
+const morgan = require("morgan");
+const express = require("express");
 // const client = require("./db");
 const app = express()
 app.use(morgan("dev"));
@@ -9,7 +9,12 @@ app.use(express.json())
 const { db, Page, User } = require('./models');
 const models = require('./models');
 
-
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
+// const addRouter = require('./routes/wiki')
+app.use('/wiki', wikiRouter);
+// app.use('/user', userRouter);
+app.use('/add')
 
 app.get('/', function (req, res) {
   res.send('.views/layout')
@@ -32,7 +37,7 @@ const init = async () => {
   // await models.Page.sync()
   // await models.User.sync()
   await models.db.sync({force: true})
-  
+
   const PORT = 1337;
   app.listen(PORT, () => {
     console.log(`App listening in port ${PORT}`);
