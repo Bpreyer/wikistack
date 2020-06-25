@@ -10,8 +10,7 @@ const { db, Page, User } = require('./models');
 const models = require('./models');
 const views = require("./views/layout");
 const wikiRouter = require('./routes/wiki');
-// const userRouter = require('./routes/user');
-// const addRouter = require('./routes/wiki')
+const userRouter = require('./routes/user');
 app.use('/wiki', wikiRouter);
 app.use('/user', userRouter);
 // app.use('/add')
@@ -45,4 +44,4 @@ const init = async () => {
 }
 init();
 
-
+module.exports = app;
